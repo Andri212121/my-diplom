@@ -1,21 +1,35 @@
 import s from "./picPrew.module.css"
+import {useState} from "react";
 
-let PicPrew = () => {
+let PicPrew = (props) => {
 
-
+    const [status, setStatus] = useState()
+console.log(props)
     let photoLoad = async (e) => {
-        const formData = new FormData()
-        formData.append('file', e.target.files[0])
-        console.log(formData)
-        await fetch('http://localhost:3001/imagePost', {
-            method: 'PUT',
-            body: formData
-        })
+        if (e.target.files[0]) {
+            props.setImg({...props.img, prew: e.target.files[0]})
+            const formData = new FormData()
+            formData.append('file', e.target.files[0])
+            await fetch('http://localhost:3001/imagePost', {
+                method: 'PUT',
+                body: formData
+            })
+        }
     }
 
     return (
         <div className={s.container}>
-            <input type="file" accept="image/*" src="" alt="" onChange={e => {photoLoad(e)}}/>
+            {!props.img.prew && <input disabled={false} type="file" accept="image/*" src="" alt="" onChange={e => {photoLoad(e)}}/>}
+            {props.img.prew &&
+                <div className={s.prewImg}>
+                    <img src={ URL.createObjectURL(props.img.prew)} alt=""/>
+                </div>
+            }
+            {props.img.crumbledImg &&
+                <div className={s.prewImg}>
+                    <img src={require("./../../data/outImg.jpg")} alt=""/>
+                </div>
+            }
         </div>
     )
 }
