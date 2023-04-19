@@ -1,0 +1,20 @@
+.container {
+  display: grid;
+  grid-template-columns: 18% 1fr;
+  grid-template-rows: 100%;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  height: calc(100vh - 60px);
+  background-color: #797979;
+}
+
+.chooseMenu {
+  grid-area: 1/1/2/2;
+  background-color: #8e8e8e;
+}
+
+.menu {
+  grid-area: 1/2/2/3;
+}
+
+/*# sourceMappingURL=sideBar.module.css.map */
