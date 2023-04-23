@@ -5,12 +5,12 @@
   grid-column-gap: 0;
   grid-row-gap: 0;
   height: calc(100vh - 60px);
-  background-color: #797979;
+  background-color: #2b2c2f;
 }
 
 .chooseMenu {
   grid-area: 1/1/2/2;
-  background-color: #8e8e8e;
+  background-color: #1e1f22;
 }
 
 .menu {

@@ -20,14 +20,14 @@ console.log(props)
     return (
         <div className={s.container}>
             {!props.img.prew && <input disabled={false} type="file" accept="image/*" src="" alt="" onChange={e => {photoLoad(e)}}/>}
-            {props.img.prew &&
+            {(props.img.prew && !props.img.crumbledImg) &&
                 <div className={s.prewImg}>
                     <img src={ URL.createObjectURL(props.img.prew)} alt=""/>
                 </div>
             }
             {props.img.crumbledImg &&
                 <div className={s.prewImg}>
-                    <img src={require("./../../data/outImg.jpg")} alt=""/>
+                    <img style={{border: "solid 1px #000000"}} src={require("./../../data/outImg.png")} alt=""/>
                 </div>
             }
         </div>

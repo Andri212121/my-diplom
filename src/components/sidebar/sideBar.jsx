@@ -1,20 +1,29 @@
 import s from "./sideBar.module.css"
-import axios from "axios";
 import {useState} from "react";
+import Operation from "./component/operation/operation";
+import Rotate from "./component/rotate/rotate";
 
 let SideBar = (props) => {
 
-    const [rotate, setRotate] = useState()
+    const [status, setStatus] = useState({
+        crop: false,
+        rotate: false
+    })
 
     return (
         <div className={s.container}>
             <div className={s.chooseMenu}>
-
+                <div className={s.select} onClick={() => {setStatus({...status, crop: true, rotate: false})}}>
+                    <Operation selected={status.crop} status={status} setStatus={setStatus} title={"Crop"} img={require("../../img/icon/crop.png")}/>
+                </div>
+                <div className={s.select} onClick={() => {setStatus({...status, crop: false, rotate: true})}}>
+                    <Operation selected={status.rotate} status={status} setStatus={setStatus} title={"Rotate"} img={require("../../img/icon/rotate.png")}/>
+                </div>
             </div>
             <div className={s.menu}>
-                <button onClick={() => {axios.get(`http://localhost:3001/imageEdit?angle=`+rotate).then(res => {props.setImg({...props.img, crumbledImg: res.data})})}}>8797987</button>
-                <input type="text" value={rotate} onChange={e => {setRotate(e.target.value)}}/>
-            </div>
+                {status.rotate && <Rotate setImg={props.setImg} img={props.img}/>}
+
+           </div>
         </div>
     )
 }
