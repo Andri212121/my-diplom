@@ -1,10 +1,7 @@
 import s from "./picPrew.module.css"
-import {useState} from "react";
 
 let PicPrew = (props) => {
 
-    const [status, setStatus] = useState()
-console.log(props)
     let photoLoad = async (e) => {
         if (e.target.files[0]) {
             props.setImg({...props.img, prew: e.target.files[0]})

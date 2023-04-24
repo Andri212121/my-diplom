@@ -28,7 +28,7 @@ app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
     res.status(200).json('done')
 })
 
-app.get('/imageEdit', (req, res) => {
+app.put('/imageEdit', (req, res) => {
     const {operation} = req.query
     switch (operation) {
         case 'rotate':
@@ -45,7 +45,7 @@ app.get('/imageEdit', (req, res) => {
         case 'flip':
             fs.readFile('./src/data/tempImg.jpg', (err, data) => {
                 sharp(data)
-                    .flip()
+                    .affine([[1, 0],[0, -1]],)
                     .png()
                     .toFile('./src/data/outImg.png', (err, info) => {
                     })
@@ -71,6 +71,18 @@ app.get('/imageEdit', (req, res) => {
             })
             res.send(true);
             break
+        case 'affine':
+            fs.readFile('./src/data/tempImg.jpg', (err, data) => {
+                sharp(data)
+                    .affine(req.body, {background: "rgba(0, 0, 0, 0)"})
+                    .png()
+                    .toFile('./src/data/outImg.png', (err, info) => {
+                    })
+                res.send(true);
+            })
+
+            break
+
     }
 
 
