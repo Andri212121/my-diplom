@@ -16,53 +16,87 @@ app.use(cors({
 app.use(express.json({limit: '50mb'}));
 app.use(express.json())
 
-let img
 
 app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
 
-    fs.writeFile('./src/data/tempImg.jpg', req.files.file.data, err => {
-    });
-    fs.writeFile('./src/data/outImg.jpg', req.files.file.data, err => {
-    });
+    sharp(req.files.file.data)
+        .png()
+        .toFile('./src/data/tempImg.png', (err, info) => {
+        })
+    sharp(req.files.file.data)
+        .png()
+        .toFile('./src/data/outImg.png', (err, info) => {
+        })
 
     res.status(200).json('done')
 })
 
-app.put('/imageEdit', (req, res) => {
+    let rotate = (angle) => {
+        fs.readFile('./src/data/outImg.png', (err, data) => {
+            sharp(data)
+                .rotate(parseInt(angle), {background: "rgba(0, 0, 0, 0)"})
+                .png()
+                .toFile('./src/data/outImg.png', (err, info) => {
+                })
+        })
+    }
+
+    let flip = () => {
+        fs.readFile('./src/data/outImg.png', (err, data) => {
+            sharp(data)
+                .affine([[1, 0],[0, -1]],)
+                .png()
+                .toFile('./src/data/outImg.png', (err, info) => {
+                })
+        })
+    }
+
+    let flop = () => {
+        fs.readFile('./src/data/outImg.png', (err, data) => {
+            sharp(data)
+                .flop()
+                .png()
+                .toFile('./src/data/outImg.png', (err, info) => {
+                })
+        })
+    }
+
+    let affine = (aff) => {
+        fs.readFile('./src/data/outImg.png', (err, data) => {
+            sharp(data)
+                .affine(aff, {background: "rgba(0, 0, 0, 0)"})
+                .png()
+                .toFile('./src/data/outImg.png', (err, info) => {
+                })
+        })
+    }
+
+app.put('/imageEdit', async (req, res) => {
     const {operation} = req.query
     switch (operation) {
         case 'rotate':
-            fs.readFile('./src/data/tempImg.jpg', (err, data) => {
-                sharp(data)
-                    .rotate(parseInt(req.query.angle), {background: "rgba(0, 0, 0, 0)"})
-                    .png()
-                    .toFile('./src/data/outImg.png', (err, info) => {
-                    })
-                res.send(true);
-            })
-
+            await rotate(req.query.angle)
+            res.send(true);
             break
+
         case 'flip':
-            fs.readFile('./src/data/tempImg.jpg', (err, data) => {
-                sharp(data)
-                    .affine([[1, 0],[0, -1]],)
-                    .png()
-                    .toFile('./src/data/outImg.png', (err, info) => {
-                    })
-                res.send(true);
-            })
-
+            await flip()
+            res.send(true);
             break
-        case 'flop':
-            fs.readFile('./src/data/tempImg.jpg', (err, data) => {
-                sharp(data)
-                    .flop()
-                    .png()
-                    .toFile('./src/data/outImg.png', (err, info) => {
-                    })
-                res.send(true);
-            })
 
+        case 'flop':
+            await flop()
+            res.send(true);
+            break
+
+        case 'affine':
+            await affine(req.body)
+            res.send(true);
+            break
+
+        case 'undo':
+            console.log(req.body)
+            res.send(true);
             break
         case 'save':
             fs.readFile('./src/data/outImg.png', (err, data) => {
@@ -70,17 +104,6 @@ app.put('/imageEdit', (req, res) => {
                 });
             })
             res.send(true);
-            break
-        case 'affine':
-            fs.readFile('./src/data/tempImg.jpg', (err, data) => {
-                sharp(data)
-                    .affine(req.body, {background: "rgba(0, 0, 0, 0)"})
-                    .png()
-                    .toFile('./src/data/outImg.png', (err, info) => {
-                    })
-                res.send(true);
-            })
-
             break
 
     }

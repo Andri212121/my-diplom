@@ -21,7 +21,7 @@ let SideBar = (props) => {
                 </div>
             </div>
             <div className={s.menu}>
-                {status.rotate && <Rotate setImg={props.setImg} img={props.img}/>}
+                {status.rotate && <Rotate setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}/>}
 
            </div>
         </div>

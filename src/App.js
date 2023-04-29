@@ -12,10 +12,12 @@ function App() {
         crumbledImg: null
     })
 
+    const [history, setHistory] = useState([])
+
   return (
     <div className="App">
         <div className="div1">
-            <SideBar img={img} setImg={setImg}/>
+            <SideBar img={img} setImg={setImg} history={history} setHistory={setHistory}/>
         </div>
         <div className="div2">
             <Header/>
