@@ -1,0 +1,114 @@
+.rotateAndFlip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.rotateAndFlip .operation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rotateAndFlip .operation .rotateAngle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+.rotateAndFlip .operation .rotateAngle p {
+  font-family: Poppins, sans-serif;
+  color: #bcbcbc;
+  font-weight: 300;
+  margin: 10px 2px 0;
+}
+.rotateAndFlip .contentParent {
+  height: 0;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+.rotateAndFlip .contentShow {
+  transition: height ease 0.5s;
+  height: 80px;
+}
+.rotateAndFlip .arrowOpen {
+  animation: rotateArrowOpen 1s;
+  transform: rotate(270deg);
+}
+.rotateAndFlip .arrowClose {
+  animation: rotateArrowClose 1s;
+  transform: rotate(0);
+}
+@keyframes rotateArrowOpen {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}
+@keyframes rotateArrowClose {
+  from {
+    transform: rotate(270deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+.rotateAndFlip .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  width: 75%;
+  height: 33px;
+  border-radius: 6px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.rotateAndFlip .title .text {
+  display: flex;
+  align-items: center;
+}
+.rotateAndFlip .title h2 {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0;
+}
+.rotateAndFlip .title img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.rotateAndFlip .title .arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.rotateAndFlip .title .arrow img {
+  width: 15px;
+  height: 15px;
+}
+.rotateAndFlip .title:hover {
+  background-color: #3a3939;
+}
+.rotateAndFlip button {
+  width: 60px;
+  height: 33px;
+  background-color: #333437;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+.rotateAndFlip button img {
+  width: 18px;
+  height: 18px;
+}
+.rotateAndFlip button:hover {
+  background-color: #434448;
+}
+.rotateAndFlip button:hover img {
+  opacity: 0.5;
+}
+
+/*# sourceMappingURL=rotateAndFlip.module.css.map */

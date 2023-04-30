@@ -1,3 +1,11 @@
+.container h1 {
+  color: #949494;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  margin: 5px 0;
+}
 .container .operation {
   display: flex;
   flex-direction: column;
@@ -18,4 +26,4 @@
   width: 200px;
 }
 
-/*# sourceMappingURL=rotate.module.css.map */
+/*# sourceMappingURL=adjust.module.css.map */

@@ -2,7 +2,7 @@ import s from "./history.module.css"
 import axios from "axios";
 
 let History = (props) => {
-    let paired = false, key = -1
+    let paired = false
 
     let historyList = props.history.map((item, index) => {
         if (!paired) {
@@ -37,8 +37,6 @@ let History = (props) => {
             }
         }
     })
-
-    console.log(historyList)
 
     return (
         <div className={s.container}>

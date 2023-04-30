@@ -1,0 +1,33 @@
+.container {
+  h1 {
+    color: #949494;
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    margin: 5px 0;
+  }
+
+    .operation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+  h2 {
+    color: #bcbcbc
+  }
+
+  button {
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    width: 120px;
+    margin-top: 8px;
+  }
+
+  input {
+    margin: 8px 0;
+    width: 200px;
+  }
+}
