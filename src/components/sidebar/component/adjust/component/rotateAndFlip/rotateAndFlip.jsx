@@ -6,13 +6,13 @@ let RotateAndFlip = (props) => {
 
     const [rotate, setRotate] = useState(0)
 
-    let rotateAc = () => {
-        axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + rotate).then(res => {
+    let rotateAc = (angle) => {
+        axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + angle).then(res => {
             props.setImg({...props.img, crumbledImg: res.data})
         })
         props.setHistory([...props.history, {
             operation: "rotate",
-            angle: rotate
+            angle: angle
         }])
     }
 
@@ -52,18 +52,10 @@ let RotateAndFlip = (props) => {
                 </div>
             </div>
             <div className={props.status.rotateAndFlip === true ? s.contentShow : s.contentParent}>
-                <button><img src={require('./../../../../../../img/icon/rotate-left.png')} onClick={() => {axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + 270).then(res => {
-                    props.setImg({...props.img, crumbledImg: res.data})
-                })}} alt=""/></button>
-                <button><img src={require('./../../../../../../img/icon/rotate-right.png')} onClick={() => {axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + 90).then(res => {
-                    props.setImg({...props.img, crumbledImg: res.data})
-                })}} alt=""/></button>
-                <button><img src={require('./../../../../../../img/icon/reflect-horizontal.png')} onClick={() => {axios.put(`http://localhost:3001/imageEdit?operation=flop`).then(res => {
-                    props.setImg({...props.img, crumbledImg: res.data})
-                })}} alt=""/></button>
-                <button><img src={require('./../../../../../../img/icon/reflect-vertical.png')} onClick={() => {axios.put(`http://localhost:3001/imageEdit?operation=flip`).then(res => {
-                    props.setImg({...props.img, crumbledImg: res.data})
-                })}} alt=""/></button>
+                <button onClick={() => {rotateAc(270)}}><img src={require('./../../../../../../img/icon/rotate-left.png')} alt=""/></button>
+                <button onClick={() => {rotateAc(90)}}><img src={require('./../../../../../../img/icon/rotate-right.png')} alt=""/></button>
+                <button onClick={() => {flopAc()}}><img src={require('./../../../../../../img/icon/reflect-horizontal.png')} alt=""/></button>
+                <button onClick={() => {flipAc()}}><img src={require('./../../../../../../img/icon/reflect-vertical.png')} alt=""/></button>
                 <div className={s.operation}>
                     <div className={s.rotateAngle}>
                         <p>
@@ -77,12 +69,10 @@ let RotateAndFlip = (props) => {
                         setRotate(e.target.value)
                     }}
                            onMouseUp={() => {
-                               axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + rotate).then(res => {
-                                   props.setImg({...props.img, crumbledImg: res.data})
-                               })
+                               rotateAc(rotate)
                                setRotate(0)
                            }
-                           }
+                    }
                     />
                 </div>
             </div>

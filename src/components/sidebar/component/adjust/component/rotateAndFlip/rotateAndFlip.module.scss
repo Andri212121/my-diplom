@@ -14,6 +14,7 @@
       justify-content: space-between;
       align-items: center;
       width: 70%;
+
       p {
         font-family: Poppins, sans-serif;
         color: #bcbcbc;
@@ -31,16 +32,16 @@
 
   .contentShow {
     transition: height ease 0.5s;
-    height: 80px;
+    height: 100px;
   }
 
 
-  .arrowOpen{
+  .arrowOpen {
     animation: rotateArrowOpen 1s;
     transform: rotate(270deg);
   }
 
-  .arrowClose{
+  .arrowClose {
     animation: rotateArrowClose 1s;
     transform: rotate(0);
   }
@@ -77,10 +78,12 @@
     //border: 1px solid #000000;
     margin: 5px 0;
     cursor: pointer;
+
     .text {
       display: flex;
       align-items: center;
     }
+
     h2 {
       font-weight: 300;
       font-size: 18px;
@@ -93,17 +96,20 @@
       margin-left: 10px;
       margin-right: 5px;
     }
+
     .arrow {
       display: flex;
       justify-content: center;
       align-items: center;
       margin-right: 5px;
+
       img {
         width: 15px;
         height: 15px;
       }
     }
   }
+
   .title:hover {
     background-color: #3a3939;
   }

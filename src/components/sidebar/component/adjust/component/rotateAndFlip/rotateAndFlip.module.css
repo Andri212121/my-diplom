@@ -28,7 +28,7 @@
 }
 .rotateAndFlip .contentShow {
   transition: height ease 0.5s;
-  height: 80px;
+  height: 100px;
 }
 .rotateAndFlip .arrowOpen {
   animation: rotateArrowOpen 1s;

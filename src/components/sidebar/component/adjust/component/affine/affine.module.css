@@ -1,3 +1,80 @@
-
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.container .inputBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .inputBlock .brackets {
+  font-family: cursive, sans-serif;
+  font-size: 80px;
+  color: #bcbcbc;
+  margin-top: -20px;
+}
+.container .inputBlock .buttonBlock {
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+  width: 200px;
+  margin-left: 3px;
+}
+.container .inputBlock .buttonBlock .input {
+  display: flex;
+}
+.container .inputBlock .buttonBlock .input input::-webkit-outer-spin-button,
+.container .inputBlock .buttonBlock .input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.container .inputBlock .buttonBlock .input input {
+  width: 35px;
+  height: 18px;
+  border: none;
+  border-radius: 5px;
+}
+.container .inputBlock .buttonBlock .input button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  margin-left: 3px;
+  margin-right: 3px;
+  opacity: 0.5;
+}
+.container .inputBlock .buttonBlock .input .minus button {
+  background-color: #a50705;
+}
+.container .inputBlock .buttonBlock .input .plus button {
+  background-color: #41ad39;
+}
+.container .inputBlock .buttonBlock .input input {
+  background-color: #585858;
+  color: #bcbcbc;
+  text-align: center;
+}
+.container .inputBlock .buttonBlock .div1 {
+  grid-area: 1/1/2/2;
+}
+.container .inputBlock .buttonBlock .div2 {
+  grid-area: 1/2/2/3;
+}
+.container .inputBlock .buttonBlock .div3 {
+  grid-area: 2/1/3/2;
+}
+.container .inputBlock .buttonBlock .div4 {
+  grid-area: 2/2/3/3;
+}
 
 /*# sourceMappingURL=affine.module.css.map */
