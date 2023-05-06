@@ -1,20 +1,51 @@
 .container {
-  display: grid;
-  grid-template-columns: 18% 1fr;
-  grid-template-rows: 100%;
-  grid-column-gap: 0;
-  grid-row-gap: 0;
+  display: flex;
   height: calc(100vh - 60px);
   background-color: #2b2c2f;
 }
-
-.chooseMenu {
-  grid-area: 1/1/2/2;
-  background-color: #1e1f22;
+.container h1 {
+  color: #949494;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+  margin: 5px 0;
+}
+.container .operation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container h2 {
+  color: #bcbcbc;
+}
+.container button {
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 8px;
+}
+.container input {
+  margin: 8px 0;
+  width: 200px;
 }
 
 .menu {
-  grid-area: 1/2/2/3;
+  width: 100%;
+}
+.menu .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu .title h2 {
+  font-family: Poppins, sans-serif;
+  font-weight: 500;
+}
+.menu .title img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
 }
 
 /*# sourceMappingURL=sideBar.module.css.map */

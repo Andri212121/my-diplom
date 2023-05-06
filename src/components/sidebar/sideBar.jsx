@@ -1,29 +1,33 @@
 import s from "./sideBar.module.css"
 import {useState} from "react";
-import Operation from "./component/operation/operation";
-import Adjust from "./component/adjust/adjust";
+import RotateAndFlip from "./component/rotateAndFlip/rotateAndFlip";
+import Affine from "./component/affine/affine";
+import History from "./component/history/history";
 
 let SideBar = (props) => {
 
     const [status, setStatus] = useState({
-        crop: false,
-        rotate: false
+        rotateAndFlip: false,
+        affine: false,
+        history: false
     })
 
     return (
         <div className={s.container}>
-            <div className={s.chooseMenu}>
-                <div className={s.select} onClick={() => {setStatus({...status, crop: true, rotate: false})}}>
-                    <Operation selected={status.crop} status={status} setStatus={setStatus} title={"Crop"} img={require("../../img/icon/crop.png")}/>
-                </div>
-                <div className={s.select} onClick={() => {setStatus({...status, crop: false, rotate: true})}}>
-                    <Operation selected={status.rotate} status={status} setStatus={setStatus} title={"Adjust"} img={require("../../img/icon/rotate.png")}/>
-                </div>
-            </div>
             <div className={s.menu}>
-                {status.rotate && <Adjust setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}/>}
-
-           </div>
+                <div className={s.title}>
+                    <img src={require('../../img/icon/adjust.png')} alt=""/>
+                    <h2>
+                        Adjust
+                    </h2>
+                </div>
+                <RotateAndFlip setImg={props.setImg} img={props.img} history={props.history}
+                               setHistory={props.setHistory} status={status} setStatus={setStatus}/>
+                <Affine setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
+                        status={status} setStatus={setStatus}/>
+                <History setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
+                         status={status} setStatus={setStatus}/>
+            </div>
         </div>
     )
 }

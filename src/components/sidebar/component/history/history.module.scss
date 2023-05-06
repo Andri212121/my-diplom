@@ -1,9 +1,105 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
   .list {
     width: 100%;
     height: 200px;
     background-color: #383838;
     overflow-y: scroll;
+  }
+
+  .contentParent {
+    height: 0;
+    overflow: hidden;
+    transition: height ease 0.9s;
+    width: 60%;
+  }
+
+  .contentShow {
+    transition: height ease 1s;
+    height: 240px;
+    width: 60%;
+  }
+
+  .arrowOpen {
+    animation: rotateArrowOpen 1s;
+    transform: rotate(270deg);
+  }
+
+  .arrowClose {
+    animation: rotateArrowClose 1s;
+    transform: rotate(0);
+  }
+
+  @keyframes rotateArrowOpen {
+    from {
+      transform: rotate(0);
+    }
+
+    to {
+      transform: rotate(270deg);
+    }
+  }
+
+  @keyframes rotateArrowClose {
+    from {
+      transform: rotate(270deg);
+    }
+
+    to {
+      transform: rotate(0);
+    }
+  }
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    //background-color: #4c4c4c;
+    width: 75%;
+    height: 33px;
+    border-radius: 6px;
+    //border: 1px solid #000000;
+    margin: 5px 0;
+    cursor: pointer;
+
+    .text {
+      display: flex;
+      align-items: center;
+    }
+
+    h2 {
+      font-weight: 300;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    img {
+      width: 20px;
+      height: 20px;
+      margin-left: 10px;
+      margin-right: 5px;
+    }
+
+    .arrow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
+
+      img {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  .title:hover {
+    background-color: #3a3939;
   }
 
   .listItemPaired {

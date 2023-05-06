@@ -2,17 +2,26 @@ import s from "./picPrew.module.css"
 
 let PicPrew = (props) => {
 
+
+
     let photoLoad = async (e) => {
         if (e.target.files[0]) {
             props.setImg({...props.img, prew: e.target.files[0]})
-            const formData = new FormData()
-            formData.append('file', e.target.files[0])
-            await fetch('http://localhost:3001/imagePost', {
-                method: 'PUT',
-                body: formData
-            })
+
+            let img = new Image()
+            img.src = URL.createObjectURL(e.target.files[0])
+
+            img.onload = async function () {
+                const formData = new FormData()
+                formData.append('file', e.target.files[0])
+                await fetch('http://localhost:3001/imagePost?width=' + img.width + '&height=' + img.height, {
+                    method: 'PUT',
+                    body: formData
+                })
+            }
         }
     }
+
 
     return (
         <div className={s.container}>

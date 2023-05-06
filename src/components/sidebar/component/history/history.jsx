@@ -40,12 +40,30 @@ let History = (props) => {
 
     return (
         <div className={s.container}>
-            <button onClick={() => {
-                axios.put(`http://localhost:3001/imageEdit?operation=undo`, props.history).then(r => {})
-            }}>Undo</button>
-            <button disabled={true}>Redo</button>
-            <div className={s.list}>
-                {historyList}
+            <div className={s.title} style={props.status.history === true ? {background: "#3a3939"} : null}
+                 onClick={() => {
+                     props.setStatus({...props.status, history: !props.status.history})
+                 }}>
+                <div className={s.text}>
+                    <img src={require('../../../../img/icon/history.png')} alt=""/>
+                    <h2>
+                        History
+                    </h2>
+                </div>
+                <div className={s.arrow}>
+                    <img className={props.status.history === true ? s.arrowOpen : s.arrowClose}
+                         src={require('../../../../img/icon/arrow-down-navigate.png')} alt=""/>
+
+                </div>
+            </div>
+            <div className={props.status.history === true ? s.contentShow : s.contentParent}>
+                <button onClick={() => {
+                    axios.put(`http://localhost:3001/imageEdit?operation=undo`, props.history).then(r => {})
+                }}>Undo</button>
+                <button disabled={true}>Redo</button>
+                <div className={s.list}>
+                    {historyList}
+                </div>
             </div>
         </div>
     )

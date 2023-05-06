@@ -40,22 +40,22 @@ let RotateAndFlip = (props) => {
                 props.setStatus({...props.status, rotateAndFlip: !props.status.rotateAndFlip})
             }}>
                 <div className={s.text}>
-                    <img src={require('../../../../../../img/icon/rotate.png')} alt=""/>
+                    <img src={require('../../../../img/icon/rotate.png')} alt=""/>
                     <h2>
                         Rotate & flip
                     </h2>
                 </div>
                 <div className={s.arrow}>
                     <img className={props.status.rotateAndFlip === true ? s.arrowOpen : s.arrowClose}
-                         src={require('../../../../../../img/icon/arrow-down-navigate.png')} alt=""/>
+                         src={require('../../../../img/icon/arrow-down-navigate.png')} alt=""/>
 
                 </div>
             </div>
             <div className={props.status.rotateAndFlip === true ? s.contentShow : s.contentParent}>
-                <button onClick={() => {rotateAc(270)}}><img src={require('./../../../../../../img/icon/rotate-left.png')} alt=""/></button>
-                <button onClick={() => {rotateAc(90)}}><img src={require('./../../../../../../img/icon/rotate-right.png')} alt=""/></button>
-                <button onClick={() => {flopAc()}}><img src={require('./../../../../../../img/icon/reflect-horizontal.png')} alt=""/></button>
-                <button onClick={() => {flipAc()}}><img src={require('./../../../../../../img/icon/reflect-vertical.png')} alt=""/></button>
+                <button onClick={() => {rotateAc(270)}}><img src={require('../../../../img/icon/rotate-left.png')} alt=""/></button>
+                <button onClick={() => {rotateAc(90)}}><img src={require('../../../../img/icon/rotate-right.png')} alt=""/></button>
+                <button onClick={() => {flopAc()}}><img src={require('../../../../img/icon/reflect-horizontal.png')} alt=""/></button>
+                <button onClick={() => {flipAc()}}><img src={require('../../../../img/icon/reflect-vertical.png')} alt=""/></button>
                 <div className={s.operation}>
                     <div className={s.rotateAngle}>
                         <p>

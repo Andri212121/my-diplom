@@ -4,6 +4,97 @@
   align-items: center;
   flex-direction: column;
 }
+.container .contentParent {
+  height: 0;
+  overflow: hidden;
+  transition: height ease 0.9s;
+}
+.container .contentShow {
+  transition: height ease 0.5s;
+  height: 125px;
+}
+.container .arrowOpen {
+  animation: rotateArrowOpen 1s;
+  transform: rotate(270deg);
+}
+.container .arrowClose {
+  animation: rotateArrowClose 1s;
+  transform: rotate(0);
+}
+@keyframes rotateArrowOpen {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(270deg);
+  }
+}
+@keyframes rotateArrowClose {
+  from {
+    transform: rotate(270deg);
+  }
+  to {
+    transform: rotate(0);
+  }
+}
+.container .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Poppins, sans-serif;
+  width: 75%;
+  height: 33px;
+  border-radius: 6px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.container .title .text {
+  display: flex;
+  align-items: center;
+}
+.container .title h2 {
+  font-weight: 300;
+  font-size: 18px;
+  margin: 0;
+}
+.container .title img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+.container .title .arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+}
+.container .title .arrow img {
+  width: 15px;
+  height: 15px;
+}
+.container .title:hover {
+  background-color: #3a3939;
+}
+.container .confirm {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+}
+.container .confirm button {
+  border: 0;
+  background-color: #5b5b5b;
+  color: #acacac;
+  border-radius: 10px;
+  height: 25px;
+  font-weight: 400;
+  font-family: Poppins, sans-serif;
+}
+.container .confirm button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 .container .inputBlock {
   display: flex;
   justify-content: center;

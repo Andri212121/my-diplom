@@ -16,8 +16,18 @@ app.use(cors({
 app.use(express.json({limit: '50mb'}));
 app.use(express.json())
 
+let imageExpansion = {
+    width: 0,
+    height: 0
+}
 
 app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
+
+    const {width} = req.query
+    const {height} = req.query
+
+    imageExpansion.width = width
+    imageExpansion.height = height
 
     sharp(req.files.file.data)
         .png()
@@ -40,17 +50,15 @@ app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
                 })
         })
     }
-
     let flip = () => {
         fs.readFile('./src/data/outImg.png', (err, data) => {
             sharp(data)
-                .affine([[1, 0],[0, -1]],)
+                .flip()
                 .png()
                 .toFile('./src/data/outImg.png', (err, info) => {
                 })
         })
     }
-
     let flop = () => {
         fs.readFile('./src/data/outImg.png', (err, data) => {
             sharp(data)
@@ -60,7 +68,6 @@ app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
                 })
         })
     }
-
     let affine = (aff) => {
         fs.readFile('./src/data/outImg.png', (err, data) => {
             sharp(data)
