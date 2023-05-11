@@ -57,10 +57,12 @@ let History = (props) => {
                 </div>
             </div>
             <div className={props.status.history === true ? s.contentShow : s.contentParent}>
-                <button onClick={() => {
-                    axios.put(`http://localhost:3001/imageEdit?operation=undo`, props.history).then(r => {})
-                }}>Undo</button>
-                <button disabled={true}>Redo</button>
+                <div className={s.buttons}>
+                    <button onClick={() => {
+                        axios.put(`http://localhost:3001/imageEdit?operation=undo`, props.history).then(r => {})
+                    }}>Undo</button>
+                    <button disabled={true}>Redo</button>
+                </div>
                 <div className={s.list}>
                     {historyList}
                 </div>

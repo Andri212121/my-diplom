@@ -4,8 +4,9 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  background-color: #8e8e8e;
 }
-.container .prewImg img {
+.container img {
   max-height: 450px;
 }
 

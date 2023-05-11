@@ -5,13 +5,22 @@
   flex-direction: column;
 
   .contentParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 0;
     overflow: hidden;
     transition: height ease 0.9s;
   }
 
   .contentShow {
-    transition: height ease 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    transition: height ease 0.8s;
     height: 125px;
   }
 
@@ -150,6 +159,9 @@
           height: 18px;
           border: none;
           border-radius: 5px;
+          background-color: #585858;
+          color: #bcbcbc;
+          text-align: center;
         }
 
         button {
@@ -167,6 +179,10 @@
           opacity: 0.5;
         }
 
+        button:hover {
+          opacity: 0.8;
+        }
+
         .minus {
           button {
             background-color: #a50705;
@@ -177,12 +193,6 @@
           button {
             background-color: #41ad39;
           }
-        }
-
-        input {
-          background-color: #585858;
-          color: #bcbcbc;
-          text-align: center;
         }
       }
 

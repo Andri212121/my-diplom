@@ -3,14 +3,20 @@ import {useState} from "react";
 import RotateAndFlip from "./component/rotateAndFlip/rotateAndFlip";
 import Affine from "./component/affine/affine";
 import History from "./component/history/history";
+import Sharpen from "./component/sharpen/sharpen";
+import axios from "axios";
 
 let SideBar = (props) => {
+
 
     const [status, setStatus] = useState({
         rotateAndFlip: false,
         affine: false,
-        history: false
+        history: false,
+        sharpen: false
     })
+
+    const [img, setImg] = useState()
 
     return (
         <div className={s.container}>
@@ -25,8 +31,13 @@ let SideBar = (props) => {
                                setHistory={props.setHistory} status={status} setStatus={setStatus}/>
                 <Affine setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
                         status={status} setStatus={setStatus}/>
+                <Sharpen setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
+                         status={status} setStatus={setStatus}/>
                 <History setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
                          status={status} setStatus={setStatus}/>
+
+
+                <img src={img} alt=""/>
             </div>
         </div>
     )

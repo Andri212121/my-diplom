@@ -1,41 +1,36 @@
 import s from "./picPrew.module.css"
+import img from "../../data/outImg.png"
+import {useDispatch, useSelector} from "react-redux";
+import {imageUploadAction} from "../../store/imageReducer";
+let PicPrew = () => {
 
-let PicPrew = (props) => {
+    const dispatch = useDispatch()
+    const processedPhoto = useSelector(state => state.photo.processedPhoto)
+    const unProcessedPhoto = useSelector(state => state.photo.unProcessedPhoto)
 
-
-
-    let photoLoad = async (e) => {
-        if (e.target.files[0]) {
-            props.setImg({...props.img, prew: e.target.files[0]})
-
-            let img = new Image()
-            img.src = URL.createObjectURL(e.target.files[0])
-
-            img.onload = async function () {
-                const formData = new FormData()
-                formData.append('file', e.target.files[0])
-                await fetch('http://localhost:3001/imagePost?width=' + img.width + '&height=' + img.height, {
-                    method: 'PUT',
-                    body: formData
-                })
-            }
+    let photoUpload = (image) => {
+        let img = new Image()
+        img.src = URL.createObjectURL(image.target.files[0])
+        img.onload = async function () {
+            const formData = new FormData()
+                        formData.append('file', image.target.files[0])
+                        await fetch('http://localhost:3001/imagePost', {
+                            method: 'PUT',
+                            body: formData
+                        })
+            dispatch(imageUploadAction({
+                image: image,
+                width: img.width,
+                height: img.height
+            }))
         }
     }
 
-
     return (
         <div className={s.container}>
-            {!props.img.prew && <input disabled={false} type="file" accept="image/*" src="" alt="" onChange={e => {photoLoad(e)}}/>}
-            {(props.img.prew && !props.img.crumbledImg) &&
-                <div className={s.prewImg}>
-                    <img src={ URL.createObjectURL(props.img.prew)} alt=""/>
-                </div>
-            }
-            {props.img.crumbledImg &&
-                <div className={s.prewImg}>
-                    <img style={{border: "solid 1px #000000"}} src={require("./../../data/outImg.png")} alt=""/>
-                </div>
-            }
+            {unProcessedPhoto === null && <input disabled={false} type="file" accept="image/*" src="" alt="" onChange={e => {photoUpload(e)}}/>}
+            {unProcessedPhoto !== null && <img src={URL.createObjectURL(unProcessedPhoto)} alt=""/>}
+            {processedPhoto !== null && <img src={processedPhoto} alt=""/>}
         </div>
     )
 }

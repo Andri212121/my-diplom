@@ -23,7 +23,7 @@ function App() {
             <Header/>
         </div>
         <div className="div3">
-            <PicPrew img={img} setImg={setImg}/>
+            <PicPrew/>
         </div>
     </div>
   );

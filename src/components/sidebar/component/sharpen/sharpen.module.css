@@ -12,15 +12,17 @@
   height: 0;
   overflow: hidden;
   transition: height ease 0.9s;
+  width: 60%;
 }
 .container .contentShow {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transition: height ease 1s;
+  height: 250px;
+  width: 60%;
   overflow: hidden;
-  transition: height ease 0.8s;
-  height: 125px;
 }
 .container .arrowOpen {
   animation: rotateArrowOpen 1s;
@@ -85,11 +87,122 @@
 .container .title:hover {
   background-color: #3a3939;
 }
-.container .confirm {
+.container .listItemPaired {
   display: flex;
-  justify-items: center;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  background-color: #484747;
+  height: 30px;
+}
+.container .listItemUnPaired {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  background-color: #383838;
+  height: 30px;
+}
+.container .inputBlock {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.container .inputBlock .input {
+  display: flex;
+  margin-right: 20px;
+}
+.container .inputBlock .input input::-webkit-outer-spin-button,
+.container .inputBlock .input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.container .inputBlock .input input {
+  width: 35px;
+  height: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #585858;
+  color: #bcbcbc;
+  text-align: center;
+}
+.container .inputBlock .input button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  border: none;
+  font-family: Poppins, sans-serif;
+  font-weight: 600;
+  margin-left: 3px;
+  margin-right: 3px;
+  opacity: 0.5;
+}
+.container .inputBlock .input button:hover {
+  opacity: 0.8;
+}
+.container .inputBlock .input .minus button {
+  background-color: #a50705;
+}
+.container .inputBlock .input .plus button {
+  background-color: #41ad39;
+}
+.container .inputBlock .input .infoShow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  border-radius: 3px;
+  background-color: #3e3e3e;
+  width: 20px;
+  height: 20px;
+  left: 330px;
+  animation: infoShow 0.4s;
+  opacity: 1;
+}
+@keyframes infoShow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.container .inputBlock .input .infoHide {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  border-radius: 3px;
+  background-color: #3e3e3e;
+  width: 20px;
+  height: 20px;
+  left: 330px;
+  animation: infoHide 0.1s;
+  opacity: 0;
+}
+@keyframes infoHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.container .inputBlock h3 {
+  font-family: Poppins, sans-serif;
+  color: #bcbcbc;
+  margin: 0 0 0 20px;
+  font-weight: 400;
+  font-size: 18px;
 }
 .container .confirm button {
   border: 0;
@@ -104,78 +217,5 @@
   opacity: 0.7;
   cursor: pointer;
 }
-.container .inputBlock {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container .inputBlock .brackets {
-  font-family: cursive, sans-serif;
-  font-size: 80px;
-  color: #bcbcbc;
-  margin-top: -20px;
-}
-.container .inputBlock .buttonBlock {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 0;
-  grid-row-gap: 0;
-  width: 200px;
-  margin-left: 3px;
-}
-.container .inputBlock .buttonBlock .input {
-  display: flex;
-}
-.container .inputBlock .buttonBlock .input input::-webkit-outer-spin-button,
-.container .inputBlock .buttonBlock .input input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.container .inputBlock .buttonBlock .input input {
-  width: 35px;
-  height: 18px;
-  border: none;
-  border-radius: 5px;
-  background-color: #585858;
-  color: #bcbcbc;
-  text-align: center;
-}
-.container .inputBlock .buttonBlock .input button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 8px;
-  border: none;
-  font-family: Poppins, sans-serif;
-  font-weight: 600;
-  margin-left: 3px;
-  margin-right: 3px;
-  opacity: 0.5;
-}
-.container .inputBlock .buttonBlock .input button:hover {
-  opacity: 0.8;
-}
-.container .inputBlock .buttonBlock .input .minus button {
-  background-color: #a50705;
-}
-.container .inputBlock .buttonBlock .input .plus button {
-  background-color: #41ad39;
-}
-.container .inputBlock .buttonBlock .div1 {
-  grid-area: 1/1/2/2;
-}
-.container .inputBlock .buttonBlock .div2 {
-  grid-area: 1/2/2/3;
-}
-.container .inputBlock .buttonBlock .div3 {
-  grid-area: 2/1/3/2;
-}
-.container .inputBlock .buttonBlock .div4 {
-  grid-area: 2/2/3/3;
-}
 
-/*# sourceMappingURL=affine.module.css.map */
+/*# sourceMappingURL=sharpen.module.css.map */

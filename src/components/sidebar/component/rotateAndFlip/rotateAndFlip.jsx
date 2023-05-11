@@ -1,37 +1,52 @@
 import s from './rotateAndFlip.module.css'
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {imageFlipAction, imageFlopAction, imageRotateAction} from "../../../../store/imageReducer";
 import {useState} from "react";
 
 let RotateAndFlip = (props) => {
 
-    const [rotate, setRotate] = useState(0)
+    const [rotateA, setRotate] = useState(0)
 
-    let rotateAc = (angle) => {
-        axios.put(`http://localhost:3001/imageEdit?operation=rotate&angle=` + angle).then(res => {
-            props.setImg({...props.img, crumbledImg: res.data})
+    const dispatch = useDispatch()
+    let feature = useSelector(state => state.feature)
+    let featureCopy = JSON.parse(JSON.stringify(feature))
+
+    let rotate = (angle) => {
+        axios.put(`http://localhost:3001/imageEdit`, {...featureCopy, rotate: featureCopy.rotate += angle}, { responseType: 'arraybuffer' }).then(res => {
+            let image = btoa(
+                new Uint8Array(res.data)
+                    .reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            dispatch(imageRotateAction({
+                angle: angle,
+                processedPhoto: `data:${`image/png`.toLowerCase()};base64,${image}`
+            }))
         })
-        props.setHistory([...props.history, {
-            operation: "rotate",
-            angle: angle
-        }])
     }
 
-    let flipAc = () => {
-        axios.put(`http://localhost:3001/imageEdit?operation=flip`).then(res => {
-            props.setImg({...props.img, crumbledImg: res.data})
+    let flip = () => {
+        axios.put(`http://localhost:3001/imageEdit`, {...featureCopy, flip: featureCopy.flip = !featureCopy.flip}, { responseType: 'arraybuffer' }).then(res => {
+            let image = btoa(
+                new Uint8Array(res.data)
+                    .reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            dispatch(imageFlipAction({
+                processedPhoto: `data:${`image/png`.toLowerCase()};base64,${image}`
+            }))
         })
-        props.setHistory([...props.history, {
-            operation: "flip"
-        }])
     }
 
-    let flopAc = () => {
-        axios.put(`http://localhost:3001/imageEdit?operation=flop`).then(res => {
-            props.setImg({...props.img, crumbledImg: res.data})
+    let flop = () => {
+        axios.put(`http://localhost:3001/imageEdit?operation=flop`, {...featureCopy, flop: featureCopy.flop = !featureCopy.flop}, { responseType: 'arraybuffer' }).then(res => {
+            let image = btoa(
+                new Uint8Array(res.data)
+                    .reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            dispatch(imageFlopAction({
+                processedPhoto: `data:${`image/png`.toLowerCase()};base64,${image}`
+            }))
         })
-        props.setHistory([...props.history, {
-            operation: "flop"
-        }])
     }
 
     return (
@@ -52,24 +67,26 @@ let RotateAndFlip = (props) => {
                 </div>
             </div>
             <div className={props.status.rotateAndFlip === true ? s.contentShow : s.contentParent}>
-                <button onClick={() => {rotateAc(270)}}><img src={require('../../../../img/icon/rotate-left.png')} alt=""/></button>
-                <button onClick={() => {rotateAc(90)}}><img src={require('../../../../img/icon/rotate-right.png')} alt=""/></button>
-                <button onClick={() => {flopAc()}}><img src={require('../../../../img/icon/reflect-horizontal.png')} alt=""/></button>
-                <button onClick={() => {flipAc()}}><img src={require('../../../../img/icon/reflect-vertical.png')} alt=""/></button>
-                <div className={s.operation}>
+                <div>
+                    <button onClick={() => {rotate(-90)}}><img src={require('../../../../img/icon/rotate-left.png')} alt=""/></button>
+                    <button onClick={() => {rotate(90)}}><img src={require('../../../../img/icon/rotate-right.png')} alt=""/></button>
+                    <button onClick={() => {flop()}}><img src={require('../../../../img/icon/reflect-horizontal.png')} alt=""/></button>
+                    <button onClick={() => {flip()}}><img src={require('../../../../img/icon/reflect-vertical.png')} alt=""/></button>
+                </div>
+               <div className={s.operation}>
                     <div className={s.rotateAngle}>
                         <p>
                             angle:
                         </p>
                         <p>
-                            {rotate}
+                            {rotateA}
                         </p>
                     </div>
-                    <input type="range" min={'-45'} max={'45'} value={rotate} onChange={e => {
+                    <input type="range" min={'-45'} max={'45'} value={rotateA} onChange={e => {
                         setRotate(e.target.value)
                     }}
                            onMouseUp={() => {
-                               rotateAc(rotate)
+                               rotate(parseInt(rotateA))
                                setRotate(0)
                            }
                     }
