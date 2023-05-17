@@ -1,6 +1,5 @@
 const express = require('express')
 const cors = require('cors')
-const fs = require('fs')
 const fileUpload = require("express-fileupload")
 const sharp = require("sharp")
 
@@ -24,13 +23,17 @@ app.put('/imagePost', fileUpload({createParentPath: true}), (req, res) => {
 })
 
 app.put('/imageEdit', async (req, res) => {
+
     let feature = req.body
     console.log(feature)
-            sharp(img)
+
+    sharp(img)
                 .rotate(feature.rotate, {background: "rgba(0, 0, 0, 0)"})
                 .toFormat('png')
                 .flip(feature.flip)
                 .flop(feature.flop)
+                .affine(feature.affine, {background: "rgba(0, 0, 0, 0)"})
+                .sharpen( feature.sharpen.sigma !== 0 ? feature.sharpen : { sigma: 0.000001, m1: feature.sharpen.m1, m2: feature.sharpen.m2, x1: feature.sharpen.x1, y2: feature.sharpen.y2, y3: feature.sharpen.y3 })
                 .toBuffer((err, data, info) => {
                     res.send(data)
                 });

@@ -85,25 +85,6 @@
 .container .title:hover {
   background-color: #3a3939;
 }
-.container .confirm {
-  display: flex;
-  justify-items: center;
-  flex-direction: column;
-  align-items: center;
-}
-.container .confirm button {
-  border: 0;
-  background-color: #5b5b5b;
-  color: #acacac;
-  border-radius: 10px;
-  height: 25px;
-  font-weight: 400;
-  font-family: Poppins, sans-serif;
-}
-.container .confirm button:hover {
-  opacity: 0.7;
-  cursor: pointer;
-}
 .container .inputBlock {
   display: flex;
   justify-content: center;

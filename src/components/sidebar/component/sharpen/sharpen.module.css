@@ -176,7 +176,7 @@
 }
 .container .inputBlock .input .infoHide {
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   font-family: Roboto, sans-serif;
@@ -196,6 +196,34 @@
   to {
     opacity: 0;
   }
+}
+.container .inputBlock .input .infoCaseShow {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  border-radius: 3px;
+  background-color: #3e3e3e;
+  width: 300px;
+  left: 360px;
+  animation: infoShow 0.4s;
+  opacity: 1;
+  padding: 10px;
+}
+.container .inputBlock .input .infoCaseHide {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  color: #bcbcbc;
+  border-radius: 3px;
+  background-color: #3e3e3e;
+  left: 360px;
+  animation: infoHide 0.1s;
+  opacity: 0;
 }
 .container .inputBlock h3 {
   font-family: Poppins, sans-serif;
