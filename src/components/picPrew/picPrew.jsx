@@ -1,5 +1,5 @@
 import s from "./picPrew.module.css"
-import img from "../../data/outImg.png"
+
 import {useDispatch, useSelector} from "react-redux";
 import {imageUploadAction} from "../../store/imageReducer";
 let PicPrew = () => {

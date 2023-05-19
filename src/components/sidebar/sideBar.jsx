@@ -16,7 +16,7 @@ let SideBar = (props) => {
         sharpen: false
     })
 
-    const [img, setImg] = useState()
+    // const [img, setImg] = useState()
 
     return (
         <div className={s.container}>
@@ -27,17 +27,10 @@ let SideBar = (props) => {
                         Adjust
                     </h2>
                 </div>
-                <RotateAndFlip setImg={props.setImg} img={props.img} history={props.history}
-                               setHistory={props.setHistory} status={status} setStatus={setStatus}/>
-                <Affine setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
-                        status={status} setStatus={setStatus}/>
-                <Sharpen setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
-                         status={status} setStatus={setStatus}/>
-                <History setImg={props.setImg} img={props.img} history={props.history} setHistory={props.setHistory}
-                         status={status} setStatus={setStatus}/>
-
-
-                <img src={img} alt=""/>
+                <RotateAndFlip status={status} setStatus={setStatus}/>
+                <Affine status={status} setStatus={setStatus}/>
+                <Sharpen status={status} setStatus={setStatus}/>
+                <History status={status} setStatus={setStatus}/>
             </div>
         </div>
     )

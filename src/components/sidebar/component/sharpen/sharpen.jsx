@@ -125,6 +125,7 @@ let Sharpen = (props) => {
                 </div>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
+                    m1Case: false,
                     sigma: false,
                     m1: true,
                     m2: false,
@@ -134,6 +135,7 @@ let Sharpen = (props) => {
                 })}
                      onMouseLeave={() => setTipStatus({
                          ...tipStatus,
+                         m1Case: false,
                          sigma: false,
                          m1: false,
                          m2: false,
@@ -160,13 +162,34 @@ let Sharpen = (props) => {
                             }}>+
                             </button>
                         </div>
-                        <div className={tipStatus.m1 ? s.infoShow : s.infoHide}>
+                        <div className={tipStatus.m1 ? s.infoShow : s.infoHide}
+                             onMouseEnter={() => setTipStatus({
+                                 ...tipStatus,
+                                 sigmaCase: false,
+                                 m1Case: true,
+                                 m2Case: false,
+                                 x1Case: false,
+                                 y2Case: false,
+                                 y3Case: false
+                             })} onMouseLeave={() => setTipStatus({
+                            ...tipStatus,
+                            sigmaCase: false,
+                            m1Case: false,
+                            m2Case: false,
+                            x1Case: false,
+                            y2Case: false,
+                            y3Case: false
+                        })}>
                             ?
+                        </div>
+                        <div className={tipStatus.m1Case && tipStatus.m1 ? s.infoCaseShow : s.infoCaseHide}>
+                            the level of sharpening to apply to "flat" areas, between 0 and 1000000
                         </div>
                     </div>
                 </div>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
+                    m2Case: false,
                     sigma: false,
                     m1: false,
                     m2: true,
@@ -176,6 +199,7 @@ let Sharpen = (props) => {
                 })}
                      onMouseLeave={() => setTipStatus({
                          ...tipStatus,
+                         m2Case: false,
                          sigma: false,
                          m1: false,
                          m2: false,
@@ -202,13 +226,34 @@ let Sharpen = (props) => {
                             }}>+
                             </button>
                         </div>
-                        <div className={tipStatus.m2 ? s.infoShow : s.infoHide}>
+                        <div className={tipStatus.m2 ? s.infoShow : s.infoHide}
+                             onMouseEnter={() => setTipStatus({
+                                 ...tipStatus,
+                                 sigmaCase: false,
+                                 m1Case: false,
+                                 m2Case: true,
+                                 x1Case: false,
+                                 y2Case: false,
+                                 y3Case: false
+                             })} onMouseLeave={() => setTipStatus({
+                            ...tipStatus,
+                            sigmaCase: false,
+                            m1Case: false,
+                            m2Case: false,
+                            x1Case: false,
+                            y2Case: false,
+                            y3Case: false
+                        })}>
                             ?
+                        </div>
+                        <div className={tipStatus.m2Case && tipStatus.m2 ? s.infoCaseShow : s.infoCaseHide}>
+                            the level of sharpening to apply to "jagged" areas, between 0 and 1000000
                         </div>
                     </div>
                 </div>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
+                    x1Case: false,
                     sigma: false,
                     m1: false,
                     m2: false,
@@ -218,6 +263,7 @@ let Sharpen = (props) => {
                 })}
                      onMouseLeave={() => setTipStatus({
                          ...tipStatus,
+                         x1Case: false,
                          sigma: false,
                          m1: false,
                          m2: false,
@@ -244,13 +290,34 @@ let Sharpen = (props) => {
                             }}>+
                             </button>
                         </div>
-                        <div className={tipStatus.x1 ? s.infoShow : s.infoHide}>
+                        <div className={tipStatus.x1 ? s.infoShow : s.infoHide}
+                             onMouseEnter={() => setTipStatus({
+                                 ...tipStatus,
+                                 sigmaCase: false,
+                                 m1Case: false,
+                                 m2Case: false,
+                                 x1Case: true,
+                                 y2Case: false,
+                                 y3Case: false
+                             })} onMouseLeave={() => setTipStatus({
+                            ...tipStatus,
+                            sigmaCase: false,
+                            m1Case: false,
+                            m2Case: false,
+                            x1Case: false,
+                            y2Case: false,
+                            y3Case: false
+                        })}>
                             ?
+                        </div>
+                        <div className={tipStatus.x1Case && tipStatus.x1 ? s.infoCaseShow : s.infoCaseHide}>
+                            threshold between "flat" and "jagged", between 0 and 1000000
                         </div>
                     </div>
                 </div>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
+                    y2Case: false,
                     sigma: false,
                     m1: false,
                     m2: false,
@@ -260,6 +327,7 @@ let Sharpen = (props) => {
                 })}
                      onMouseLeave={() => setTipStatus({
                          ...tipStatus,
+                         y2Case: false,
                          sigma: false,
                          m1: false,
                          m2: false,
@@ -286,13 +354,34 @@ let Sharpen = (props) => {
                             }}>+
                             </button>
                         </div>
-                        <div className={tipStatus.y2 ? s.infoShow : s.infoHide}>
+                        <div className={tipStatus.y2 ? s.infoShow : s.infoHide}
+                             onMouseEnter={() => setTipStatus({
+                                 ...tipStatus,
+                                 sigmaCase: false,
+                                 m1Case: false,
+                                 m2Case: false,
+                                 x1Case: false,
+                                 y2Case: true,
+                                 y3Case: false
+                             })} onMouseLeave={() => setTipStatus({
+                            ...tipStatus,
+                            sigmaCase: false,
+                            m1Case: false,
+                            m2Case: false,
+                            x1Case: false,
+                            y2Case: false,
+                            y3Case: false
+                        })}>
                             ?
+                        </div>
+                        <div className={tipStatus.y2Case && tipStatus.y2 ? s.infoCaseShow : s.infoCaseHide}>
+                            maximum amount of brightening, between 0 and 1000000
                         </div>
                     </div>
                 </div>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
+                    y3Case: false,
                     sigma: false,
                     m1: false,
                     m2: false,
@@ -302,6 +391,7 @@ let Sharpen = (props) => {
                 })}
                      onMouseLeave={() => setTipStatus({
                          ...tipStatus,
+                         y3Case: false,
                          sigma: false,
                          m1: false,
                          m2: false,
@@ -328,8 +418,28 @@ let Sharpen = (props) => {
                             }}>+
                             </button>
                         </div>
-                        <div className={tipStatus.y3 ? s.infoShow : s.infoHide}>
+                        <div className={tipStatus.y3 ? s.infoShow : s.infoHide}
+                             onMouseEnter={() => setTipStatus({
+                                 ...tipStatus,
+                                 sigmaCase: false,
+                                 m1Case: false,
+                                 m2Case: false,
+                                 x1Case: false,
+                                 y2Case: false,
+                                 y3Case: true
+                             })} onMouseLeave={() => setTipStatus({
+                            ...tipStatus,
+                            sigmaCase: false,
+                            m1Case: false,
+                            m2Case: false,
+                            x1Case: false,
+                            y2Case: false,
+                            y3Case: false
+                        })}>
                             ?
+                        </div>
+                        <div className={tipStatus.y3Case && tipStatus.y3 ? s.infoCaseShow : s.infoCaseHide}>
+                            maximum amount of darkening, between 0 and 1000000
                         </div>
                     </div>
                 </div>
