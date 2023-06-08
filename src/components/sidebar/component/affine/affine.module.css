@@ -108,20 +108,29 @@
 }
 .container .inputBlock .buttonBlock .input {
   display: flex;
+  margin-top: 8px;
+  align-items: center;
 }
-.container .inputBlock .buttonBlock .input input::-webkit-outer-spin-button,
-.container .inputBlock .buttonBlock .input input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-.container .inputBlock .buttonBlock .input input {
-  width: 35px;
-  height: 18px;
+.container .inputBlock .buttonBlock .input .inputField {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 20px;
   border: none;
   border-radius: 5px;
   background-color: #585858;
   color: #bcbcbc;
   text-align: center;
+}
+.container .inputBlock .buttonBlock .input .inputField p {
+  margin: 0;
+  padding-bottom: 2px;
+}
+.container .inputBlock .buttonBlock .input input::-webkit-outer-spin-button,
+.container .inputBlock .buttonBlock .input input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .container .inputBlock .buttonBlock .input button {
   display: flex;
@@ -140,22 +149,44 @@
 .container .inputBlock .buttonBlock .input button:hover {
   opacity: 0.8;
 }
+.container .inputBlock .buttonBlock .input .minus {
+  display: flex;
+  align-items: center;
+}
 .container .inputBlock .buttonBlock .input .minus button {
   background-color: #a50705;
+  margin: 0 3px 0 0;
+}
+.container .inputBlock .buttonBlock .input .plus {
+  display: flex;
+  align-items: center;
 }
 .container .inputBlock .buttonBlock .input .plus button {
   background-color: #41ad39;
+  margin: 0 0 0 3px;
 }
 .container .inputBlock .buttonBlock .div1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: 1/1/2/2;
 }
 .container .inputBlock .buttonBlock .div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: 1/2/2/3;
 }
 .container .inputBlock .buttonBlock .div3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: 2/1/3/2;
 }
 .container .inputBlock .buttonBlock .div4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   grid-area: 2/2/3/3;
 }
 

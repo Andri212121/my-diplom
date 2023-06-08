@@ -1,9 +1,14 @@
 import s from "./history.module.css"
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {statusAction} from "../../../../store/imageReducer";
 
 let History = (props) => {
+
+    const dispatch = useDispatch()
+    let status = useSelector(state => state.status)
+
     let paired = false
-    console.log(props.history)
     // let historyList = props.history.map((item, index) => {
     //     if (!paired) {
     //
@@ -40,9 +45,9 @@ let History = (props) => {
 
     return (
         <div className={s.container}>
-            <div className={s.title} style={props.status.history === true ? {background: "#3a3939"} : null}
+            <div className={s.title} style={status.history === true ? {background: "#3a3939"} : null}
                  onClick={() => {
-                     props.setStatus({...props.status, history: !props.status.history})
+                     dispatch(statusAction({...status, history: !status.history}))
                  }}>
                 <div className={s.text}>
                     <img src={require('../../../../img/icon/history.png')} alt=""/>
@@ -51,12 +56,12 @@ let History = (props) => {
                     </h2>
                 </div>
                 <div className={s.arrow}>
-                    <img className={props.status.history === true ? s.arrowOpen : s.arrowClose}
+                    <img className={status.history === true ? s.arrowOpen : s.arrowClose}
                          src={require('../../../../img/icon/arrow-down-navigate.png')} alt=""/>
 
                 </div>
             </div>
-            <div className={props.status.history === true ? s.contentShow : s.contentParent}>
+            <div className={status.history === true ? s.contentShow : s.contentParent}>
                 <div className={s.buttons}>
                     <button onClick={() => {
                         axios.put(`http://localhost:3001/imageEdit?operation=undo`, props.history).then(r => {})

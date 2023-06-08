@@ -1,16 +1,22 @@
 import s from './affine.module.css'
 import axios from "axios";
-import {imageAffineAction} from "../../../../store/imageReducer";
+import {imageAffineAction, loadingAction, statusAction} from "../../../../store/imageReducer";
 import {useDispatch, useSelector} from "react-redux";
 
-let Affine = (props) => {
+let Affine = () => {
 
     const dispatch = useDispatch()
     let feature = useSelector(state => state.feature)
+    let status = useSelector(state => state.status)
     let featureCopy = JSON.parse(JSON.stringify(feature))
 
     let affine = (affine) => {
-        axios.put(`http://localhost:3001/imageEdit`, {...featureCopy, affine: affine}, { responseType: 'arraybuffer' }).then(res => {
+        dispatch(loadingAction())
+        axios.put(`http://localhost:3001/imageEdit`, {
+            ...featureCopy,
+            affine: affine
+        }, {responseType: 'arraybuffer'}).then(res => {
+            dispatch(loadingAction())
             let image = btoa(
                 new Uint8Array(res.data)
                     .reduce((data, byte) => data + String.fromCharCode(byte), '')
@@ -24,9 +30,9 @@ let Affine = (props) => {
 
     return (
         <div className={s.container}>
-            <div className={s.title} style={props.status.affine === true ? {background: "#3a3939"} : null}
+            <div className={s.title} style={status.affine === true ? {background: "#3a3939"} : null}
                  onClick={() => {
-                     props.setStatus({...props.status, affine: !props.status.affine})
+                     dispatch(statusAction({...status, affine: !status.affine}))
                  }}>
                 <div className={s.text}>
                     <img src={require('../../../../img/icon/affine.png')} alt=""/>
@@ -35,12 +41,12 @@ let Affine = (props) => {
                     </h2>
                 </div>
                 <div className={s.arrow}>
-                    <img className={props.status.affine === true ? s.arrowOpen : s.arrowClose}
+                    <img className={status.affine === true ? s.arrowOpen : s.arrowClose}
                          src={require('../../../../img/icon/arrow-down-navigate.png')} alt=""/>
 
                 </div>
             </div>
-            <div className={props.status.affine === true ? s.contentShow : s.contentParent}>
+            <div className={status.affine === true ? s.contentShow : s.contentParent}>
                 <div className={s.inputBlock}>
                     <div className={s.brackets}>
                         [
@@ -54,9 +60,11 @@ let Affine = (props) => {
                                     }}>-
                                     </button>
                                 </div>
-                                <input type="text" step={0.01} value={featureCopy.affine[0][0]}  onChange={e => {
-                                    affine([[parseFloat(e.target.value), featureCopy.affine[0][1]], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
-                                }}/>
+                                <div className={s.inputField} onClick={() => {
+                                    affine([[parseFloat(prompt()), featureCopy.affine[0][1]], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
+                                }}>
+                                    <p>{featureCopy.affine[0][0]}</p>
+                                </div>
                                 <div className={s.plus}>
                                     <button onClick={() => {
                                         affine([[parseFloat((featureCopy.affine[0][0] + 0.01).toFixed(2)), featureCopy.affine[0][1]], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
@@ -73,9 +81,11 @@ let Affine = (props) => {
                                     }}>-
                                     </button>
                                 </div>
-                                <input type="number" step={0.01} value={featureCopy.affine[0][1]} onChange={e => {
-                                    affine([[featureCopy.affine[0][0], parseFloat(e.target.value)], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
-                                }}/>
+                                <div className={s.inputField} onClick={() => {
+                                    affine([[featureCopy.affine[0][0], parseFloat(prompt())], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
+                                }}>
+                                    <p>{featureCopy.affine[0][1]}</p>
+                                </div>
                                 <div className={s.plus}>
                                     <button onClick={() => {
                                         affine([[featureCopy.affine[0][0], parseFloat((featureCopy.affine[0][1] + 0.01).toFixed(2))], [featureCopy.affine[1][0], featureCopy.affine[1][1]]])
@@ -92,9 +102,11 @@ let Affine = (props) => {
                                     }}>-
                                     </button>
                                 </div>
-                                <input type="number" step={0.01} value={featureCopy.affine[1][0]} onChange={e => {
-                                    affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [parseFloat(e.target.value), featureCopy.affine[1][1]]])
-                                }}/>
+                                <div className={s.inputField} onClick={() => {
+                                    affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [parseFloat(prompt()), featureCopy.affine[1][1]]])
+                                }}>
+                                    <p>{featureCopy.affine[1][0]}</p>
+                                </div>
                                 <div className={s.plus}>
                                     <button onClick={() => {
                                         affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [parseFloat((featureCopy.affine[1][0] + 0.01).toFixed(2)), featureCopy.affine[1][1]]])
@@ -111,9 +123,11 @@ let Affine = (props) => {
                                     }}>-
                                     </button>
                                 </div>
-                                <input type="number" step={0.01} value={featureCopy.affine[1][1]} onChange={e => {
-                                    affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [featureCopy.affine[1][0], parseFloat(e.target.value)]])
-                                }}/>
+                                <div className={s.inputField} onClick={() => {
+                                    affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [featureCopy.affine[1][0], parseFloat(prompt())]])
+                                }}>
+                                    <p>{featureCopy.affine[1][1]}</p>
+                                </div>
                                 <div className={s.plus}>
                                     <button onClick={() => {
                                         affine([[featureCopy.affine[0][0], featureCopy.affine[0][1]], [featureCopy.affine[1][0], parseFloat((featureCopy.affine[1][1] + 0.01).toFixed(2))]])

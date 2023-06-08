@@ -21,7 +21,7 @@
     align-items: center;
     flex-direction: column;
     transition: height ease 1s;
-    height: 250px;
+    height: 70px;
     width: 60%;
     overflow: hidden;
   }
@@ -126,9 +126,8 @@
 
   .inputBlock {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    height: 38px;
+    justify-content: space-between;
     width: 100%;
 
     .input {
@@ -152,13 +151,21 @@
           padding-bottom: 2px;
         }
       }
-
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
       }
 
+      input {
+        width: 35px;
+        height: 18px;
+        border: none;
+        border-radius: 5px;
+        background-color: #585858;
+        color: #bcbcbc;
+        text-align: center;
+      }
 
       button {
         display: flex;
@@ -196,78 +203,6 @@
           margin: 0 0 0 3px
         }
       }
-
-      .infoShow {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Roboto, sans-serif;
-        color: #bcbcbc;
-        border-radius: 3px;
-        background-color: #3e3e3e;
-        width: 20px;
-        height: 20px;
-        left: 235px;
-        animation: infoShow 0.4s;
-        opacity: 1;
-      }
-
-      @keyframes infoShow {
-        from {opacity: 0;}
-        to {opacity: 1;}
-      }
-
-      .infoHide {
-        position: absolute;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-family: Roboto, sans-serif;
-        color: #bcbcbc;
-        border-radius: 3px;
-        background-color: #3e3e3e;
-        width: 20px;
-        height: 20px;
-        left: 330px;
-        animation: infoHide 0.1s;
-        opacity: 0;
-      }
-
-      @keyframes infoHide {
-        from {opacity: 1;}
-        to {opacity: 0;}
-      }
-
-      .infoCaseShow {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Roboto, sans-serif;
-        color: #bcbcbc;
-        border-radius: 3px;
-        background-color: #3e3e3e;
-        width: 300px;
-        left: 360px;
-        animation: infoShow 0.4s;
-        opacity: 1;
-        padding: 10px;
-      }
-
-      .infoCaseHide {
-        position: absolute;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        font-family: Roboto, sans-serif;
-        color: #bcbcbc;
-        border-radius: 3px;
-        background-color: #3e3e3e;
-        left: 360px;
-        animation: infoHide 0.1s;
-        opacity: 0;
-      }
     }
 
     h3 {
@@ -276,22 +211,6 @@
       margin: 0 0 0 20px;
       font-weight: 400;
       font-size: 18px;
-    }
-  }
-
-  .confirm {
-    button {
-      border: 0;
-      background-color: #5b5b5b;
-      color: #acacac;
-      border-radius: 10px;
-      height: 25px;
-      font-weight: 400;
-      font-family: Poppins, sans-serif;
-    }
-    button:hover {
-      opacity: 0.7;
-      cursor: pointer;
     }
   }
 }

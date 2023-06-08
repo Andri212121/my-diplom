@@ -20,7 +20,7 @@
   align-items: center;
   flex-direction: column;
   transition: height ease 1s;
-  height: 250px;
+  height: 60px;
   width: 60%;
   overflow: hidden;
 }
@@ -109,11 +109,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 38px;
   width: 100%;
 }
 .container .inputBlock .input {
   display: flex;
+  margin-right: 20px;
   align-items: center;
 }
 .container .inputBlock .input .inputField {
@@ -130,7 +130,6 @@
 }
 .container .inputBlock .input .inputField p {
   margin: 0;
-  padding-bottom: 2px;
 }
 .container .inputBlock .input input::-webkit-outer-spin-button,
 .container .inputBlock .input input::-webkit-inner-spin-button {
@@ -181,7 +180,7 @@
   background-color: #3e3e3e;
   width: 20px;
   height: 20px;
-  left: 235px;
+  left: 330px;
   animation: infoShow 0.4s;
   opacity: 1;
 }
@@ -265,4 +264,4 @@
   cursor: pointer;
 }
 
-/*# sourceMappingURL=sharpen.module.css.map */
+/*# sourceMappingURL=negate.module.css.map */

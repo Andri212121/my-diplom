@@ -126,21 +126,31 @@
 
       .input {
         display: flex;
+        margin-top: 8px;
+        align-items: center;
 
-        input::-webkit-outer-spin-button,
-        input::-webkit-inner-spin-button {
-          -webkit-appearance: none;
-          margin: 0;
-        }
-
-        input {
-          width: 35px;
-          height: 18px;
+        .inputField {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 20px;
           border: none;
           border-radius: 5px;
           background-color: #585858;
           color: #bcbcbc;
           text-align: center;
+
+          p {
+            margin: 0;
+            padding-bottom: 2px;
+          }
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
         }
 
         button {
@@ -163,31 +173,51 @@
         }
 
         .minus {
+          display: flex;
+          align-items: center;
+
           button {
             background-color: #a50705;
+            margin: 0 3px 0 0
           }
         }
 
         .plus {
+          display: flex;
+          align-items: center;
+
           button {
             background-color: #41ad39;
+            margin: 0 0 0 3px
           }
         }
       }
 
       .div1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         grid-area: 1 / 1 / 2 / 2;
       }
 
       .div2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         grid-area: 1 / 2 / 2 / 3;
       }
 
       .div3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         grid-area: 2 / 1 / 3 / 2;
       }
 
       .div4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         grid-area: 2 / 2 / 3 / 3;
       }
     }

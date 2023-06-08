@@ -2,24 +2,27 @@ import s from './sharpen.module.css'
 import axios from "axios";
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {imageASharpenAction} from "../../../../store/imageReducer";
+import {imageSharpenAction, loadingAction, statusAction} from "../../../../store/imageReducer";
 
-let Sharpen = (props) => {
+let Sharpen = () => {
 
     const dispatch = useDispatch()
     let feature = useSelector(state => state.feature)
+    let status = useSelector(state => state.status)
     let featureCopy = JSON.parse(JSON.stringify(feature))
 
     let sharpen = (sharpen) => {
+        dispatch(loadingAction())
         axios.put(`http://localhost:3001/imageEdit`, {
             ...featureCopy,
             sharpen: sharpen
         }, {responseType: 'arraybuffer'}).then(res => {
+            dispatch(loadingAction())
             let image = btoa(
                 new Uint8Array(res.data)
                     .reduce((data, byte) => data + String.fromCharCode(byte), '')
             );
-            dispatch(imageASharpenAction({
+            dispatch(imageSharpenAction({
                 sharpen: sharpen,
                 processedPhoto: `data:${`image/png`.toLowerCase()};base64,${image}`
             }))
@@ -43,9 +46,9 @@ let Sharpen = (props) => {
 
     return (
         <div className={s.container}>
-            <div className={s.title} style={props.status.sharpen === true ? {background: "#3a3939"} : null}
+            <div className={s.title} style={status.sharpen === true ? {background: "#3a3939"} : null}
                  onClick={() => {
-                     props.setStatus({...props.status, sharpen: !props.status.sharpen})
+                     dispatch(statusAction({...status, sharpen: !status.sharpen}))
                  }}>
                 <div className={s.text}>
                     <img src={require('../../../../img/icon/sharpen.png')} alt=""/>
@@ -54,12 +57,12 @@ let Sharpen = (props) => {
                     </h2>
                 </div>
                 <div className={s.arrow}>
-                    <img className={props.status.sharpen === true ? s.arrowOpen : s.arrowClose}
+                    <img className={status.sharpen === true ? s.arrowOpen : s.arrowClose}
                          src={require('../../../../img/icon/arrow-down-navigate.png')} alt=""/>
 
                 </div>
             </div>
-            <div className={props.status.sharpen === true ? s.contentShow : s.contentParent}>
+            <div className={status.sharpen === true ? s.contentShow : s.contentParent}>
                 <div className={s.inputBlock} onMouseEnter={() => setTipStatus({
                     ...tipStatus,
                     sigmaCase: false,
@@ -89,9 +92,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.sigma} onChange={event => {
-                            sharpen({...featureCopy.sharpen, sigma: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, sigma: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.sigma}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, sigma: featureCopy.sharpen.sigma + 0.5})
@@ -153,9 +160,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.m1} onChange={event => {
-                            sharpen({...featureCopy.sharpen, m1: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, m1: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.m1}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, m1: featureCopy.sharpen.m1 + 0.5})
@@ -217,9 +228,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.m2} onChange={event => {
-                            sharpen({...featureCopy.sharpen, m2: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, m2: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.m2}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, m2: featureCopy.sharpen.m2 + 0.5})
@@ -281,9 +296,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.x1} onChange={event => {
-                            sharpen({...featureCopy.sharpen, x1: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, x1: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.x1}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, x1: featureCopy.sharpen.x1 + 0.5})
@@ -345,9 +364,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.y2} onChange={event => {
-                            sharpen({...featureCopy.sharpen, y2: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, y2: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.y2}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, y2: featureCopy.sharpen.y2 + 0.5})
@@ -409,9 +432,13 @@ let Sharpen = (props) => {
                             }}>-
                             </button>
                         </div>
-                        <input type="number" value={featureCopy.sharpen.y3} onChange={event => {
-                            sharpen({...featureCopy.sharpen, y3: event.target.value})
-                        }}/>
+                        <div className={s.inputField} onClick={() => {
+                            sharpen({...featureCopy.sharpen, y3: parseFloat(prompt())})
+                        }}>
+                            <p>
+                                {featureCopy.sharpen.y3}
+                            </p>
+                        </div>
                         <div className={s.plus}>
                             <button onClick={() => {
                                 sharpen({...featureCopy.sharpen, y3: featureCopy.sharpen.y3 + 0.5})

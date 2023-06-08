@@ -28,15 +28,27 @@ app.put('/imageEdit', async (req, res) => {
     console.log(feature)
 
     sharp(img)
-                .rotate(feature.rotate, {background: "rgba(0, 0, 0, 0)"})
-                .toFormat('png')
-                .flip(feature.flip)
-                .flop(feature.flop)
-                .affine(feature.affine, {background: "rgba(0, 0, 0, 0)"})
-                .sharpen( feature.sharpen.sigma !== 0 ? feature.sharpen : { sigma: 0.000001, m1: feature.sharpen.m1, m2: feature.sharpen.m2, x1: feature.sharpen.x1, y2: feature.sharpen.y2, y3: feature.sharpen.y3 })
-                .toBuffer((err, data, info) => {
-                    res.send(data)
-                });
+        .rotate(feature.rotate, {background: "rgba(0, 0, 0, 0)"})
+        .toFormat('png')
+        .flip(feature.flip)
+        .flop(feature.flop)
+        .affine(feature.affine, {background: "rgba(0, 0, 0, 0)"})
+        .median(feature.median)
+        .blur(feature.blur)
+        .sharpen(feature.sharpen.sigma !== 0 ? feature.sharpen : {
+            sigma: 0.000001,
+            m1: feature.sharpen.m1,
+            m2: feature.sharpen.m2,
+            x1: feature.sharpen.x1,
+            y2: feature.sharpen.y2,
+            y3: feature.sharpen.y3
+        })
+        .gamma(feature.gamma)
+        .negate(feature.negate)
+        .normalise({ lower: 0, upper: 100 })
+        .toBuffer((err, data, info) => {
+            res.send(data)
+        });
 })
 
 app.listen(port, () => {
